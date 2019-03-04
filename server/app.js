@@ -1,33 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = 5000;
 const nodemailer = require('nodemailer');
 const config = require('./config.js')
 
-app.get('/send', (req, res) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: config.email,
-            pass: config.pass
-        }
-    });
+app.use(cors());
+app.use(express.json());
 
-    const mailOptions = {
-        from: config.email,
-        to: config.email, // change this to users email in the future
-        subject: "GEM Newsletters",
-        html: "<h1>Hello World</h1><p>We sent this email using nodemailer 🤓</p>"
-    }
+require('./app/routes.js')(app);
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email send: ' + info.response);
-        }
-    })
-})
+
 
 app.listen(port, () => {
     console.log(`Sever running on locoalhost:${port}`);
