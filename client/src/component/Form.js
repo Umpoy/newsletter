@@ -5,19 +5,24 @@ class Form extends Component {
         super(props);
         this.state = { email: '' }
 
-        this.onFormChange = this.onFormChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    onFormChange(event) {
-        console.log(event.target.value);
+    handleChange(event) {
         this.setState({ email: event.target.value })
+    }
+
+    handleSubmit(event) {
+        alert('hello world')
+        event.preventDefault();
     }
 
     render() {
         return (
             <div className="form">
-                <form action="get">
-                    <input type="email" value={this.state.email} onChange={this.onFormChange} />
+                <form action="get" onSubmit={this.handleSubmit}>
+                    <input type="email" value={this.state.email} onChange={this.handleChange} />
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         )
