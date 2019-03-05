@@ -22,16 +22,20 @@ class Form extends Component {
         axios.post("http://localhost:5000/send", data).then(res => {
             console.log(res);
             console.log(res.data);
-        })
+        });
+        this.setState({ email: '' })
     }
 
     render() {
         return (
             <div className="form">
                 <form action="get" onSubmit={this.handleSubmit}>
-                    <input type="email" value={this.state.email} onChange={this.handleChange} />
-                    <input type="submit" value="Submit" />
+                    <div className="form-group">
+                        <input type="email" className="form-control" value={this.state.email} onChange={this.handleChange} placeholder="Please Enter Your Email" />
+                    </div>
+                    <button type="submit" className="btn btn-light submit">Submit</button>
                 </form>
+
             </div>
         )
     }
