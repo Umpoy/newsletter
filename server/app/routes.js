@@ -2,6 +2,10 @@ const nodemailer = require('nodemailer');
 const config = require('../config')
 
 module.exports = app => {
+    app.get('/', (req, res) => {
+        res.send('Hello');
+    })
+
     app.post('/send', (req, res) => {
         console.log(req.body)
         const transporter = nodemailer.createTransport({

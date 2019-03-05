@@ -19,7 +19,7 @@ class Form extends Component {
         const data = {
             email: this.state.email
         }
-        axios.post("http://localhost:5000/send", data).then(res => {
+        axios.post("/send", data).then(res => {
             console.log(res);
             console.log(res.data);
         });
